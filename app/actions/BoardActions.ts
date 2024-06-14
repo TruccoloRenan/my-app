@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 export async function createNewBoard(formData: FormData) {
   const name = formData.get("boardname") as string
   let userId: any;
+
   try{
     userId = localStorage.getItem("UserId")
   }catch (error){
@@ -29,8 +30,9 @@ const existingBoard = await api.get(`/kanban-board/${userId}`)
 
 export async function createTask(formData: FormData) {
   const name = formData.get("task") as string
-  const boardId2 = formData.get("boardId") as string
-  console.log(boardId2)
+  const boardId = formData.get("boardId") as string
+
+  console.log(boardId)
   if (!name.trim()) {
     return
   }
@@ -38,11 +40,11 @@ export async function createTask(formData: FormData) {
   const content = "teste"
   const created_by = "renan";
   const atribuited_to = "renan"
-  var board = {connect: {id: parseInt(boardId2)} }
+  var board = {connect: {id: 1} }
 
   await api.post("/tasks", {title, content, created_by, atribuited_to, board})
 
-  revalidatePath("/");
+  //revalidatePath("/mykanban");
 }
 
 export async function editTask(formData: FormData) {
