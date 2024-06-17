@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ubuntu.className} dark:bg-grey-900 suppressHydrationWarning text-white`}>
+        className={`${ubuntu.className} dark:bg-grey-900 text-white suppressHydrationWarning`}>
         <Theme>
           <ToasterContext />
           <Navbar />

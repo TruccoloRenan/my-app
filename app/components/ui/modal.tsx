@@ -25,7 +25,7 @@ const Modal = ({
     } else if (isEdit) {
       toast.success("Task Has Been Updated");
     } else if (isDelete) {
-      toast.success("Tak has been deleted");
+      toast.success("Task has been deleted");
     }
     closeModal();
   };

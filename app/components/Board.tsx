@@ -101,7 +101,7 @@ const Board: React.FC<{ board: BoardTypes | null }> = ({
   }
 
   return (
-    <div className="dark:bg-gray-900 py-10 relative h-screen">
+    <div className="dark:bg-gray-900 py-20 relative h-screen">
       <h1 className="font-bold text-center mb-10 text-3xl">
         {board!.name}
       </h1>

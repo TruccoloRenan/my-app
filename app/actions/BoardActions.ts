@@ -44,7 +44,7 @@ export async function createTask(formData: FormData) {
 
   await api.post("/tasks", {title, content, created_by, atribuited_to, board})
 
-  //revalidatePath("/mykanban");
+  revalidatePath("/");
 }
 
 export async function editTask(formData: FormData) {

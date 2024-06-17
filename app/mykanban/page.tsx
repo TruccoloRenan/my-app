@@ -18,7 +18,7 @@ const page = async () => {
   return (
     <>
       <AuthRoute >
-      <div className="bg-[url('/bg.jpeg')] h-[102vh] relative w-full bg-cover mt-[-75px] overflow-hidden">
+      <div className="bg-[url('/bg.jpeg')] h-[102vh] relative w-full bg-cover mt-[-75px] ">
         <Board board={board.data} />
         </div>
       </AuthRoute>
