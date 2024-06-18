@@ -8,8 +8,8 @@ import SyncLoader from "react-spinners/SyncLoader";
 import toast from "react-hot-toast";
 import Input from "../components/ui/Input";
 import {
-  createNewBoard,
-  createTask,
+  CreateNewBoard,
+  CreateTask,
 } from "../actions/BoardActions";
 
 const variants = {
@@ -69,11 +69,11 @@ const OnboardingForm = ({
           className="w-full text-center"
         >
           <h1 className="mb-10 text-4xl font-bold uppercase">
-            Hey {user} 👋 Let's Give Your Board a Name!
+            {`Hey👋 Let's Give Your Board a Name!`}
           </h1>
           <form
             className="flex flex-col gap-10 items-center"
-            action={createNewBoard}
+            action={CreateNewBoard}
             onSubmit={stepOneSubmit}
           >
             <Input
@@ -95,11 +95,11 @@ const OnboardingForm = ({
           className="w-full text-center"
         >
           <h1 className="mb-10 text-4xl font-bold uppercase">
-            Now Let's Add your first task! 😊
+            {`Now Let's Add your first task! 😊`}
           </h1>
           <form
             onSubmit={stepTwoSubmit}
-            action={createTask}
+            action={CreateTask}
             className="flex flex-col gap-10 items-center"
           >
             <Input

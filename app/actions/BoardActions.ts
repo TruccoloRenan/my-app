@@ -1,34 +1,30 @@
-
-import { revalidatePath } from "next/cache"
 import api from '../services/api';
 import { format, parseISO } from 'date-fns';
+import { useEffect } from "react";
 
-export async function createNewBoard(formData: FormData) {
+export async function CreateNewBoard(formData: FormData) {
   const name = formData.get("boardname") as string
   let userId: any;
 
-  try{
+  useEffect(() => {
     userId = localStorage.getItem("UserId")
-  }catch (error){
-    console.log(error)
-  }
+  }, [])
 
-const existingBoard = await api.get(`/kanban-board/${userId}`)
+  const existingBoard = await api.get(`/kanban-board/${userId}`)
 
-  if (existingBoard.data !== "" ) {
+  if (existingBoard.data !== "") {
     console.log("entrou")
-    await api.put(`/kanban-board/${existingBoard.data.id}`, {name})
+    await api.put(`/kanban-board/${existingBoard.data.id}`, { name })
 
   } else {
 
     userId = parseInt(userId)
-    await api.post("/kanban-board", { name, userId})
+    await api.post("/kanban-board", { name, userId })
   }
 
-  revalidatePath("/");
 }
 
-export async function createTask(formData: FormData) {
+export async function CreateTask(formData: FormData) {
   const name = formData.get("task") as string
   const boardId = formData.get("boardId") as string
 
@@ -40,14 +36,13 @@ export async function createTask(formData: FormData) {
   const content = "teste"
   const created_by = "renan";
   const atribuited_to = "renan"
-  var board = {connect: {id: 1} }
+  var board = { connect: { id: 1 } }
 
-  await api.post("/tasks", {title, content, created_by, atribuited_to, board})
+  await api.post("/tasks", { title, content, created_by, atribuited_to, board })
 
-  revalidatePath("/");
 }
 
-export async function editTask(formData: FormData) {
+export async function EditTask(formData: FormData) {
   const newTask = formData.get("newTask") as string;
   const taskId = formData.get("taskId") as string;
 
@@ -59,22 +54,23 @@ export async function editTask(formData: FormData) {
   const content = "teste"
   const created_by = "renan";
   const atribuited_to = "renan"
-  const status = "DOING";
   const now: Date = new Date();
   var updatedAt = parseISO(format(now, 'yyyy-MM-dd HH:mm:ss'));
 
-  await api.put(`/tasks/${taskId}`, {title, content, created_by, atribuited_to, status, updatedAt})
- 
+  const Response = await api.put(`/tasks/${taskId}`, { title, content, created_by, atribuited_to, updatedAt })
 
-  revalidatePath("/")
+  if (Response.data == "") {
+    alert("STATUS ERRADO")
+  }
+  {
+  }
 }
 
-export async function deleteTask(formData: FormData) {
+export async function DeleteTask(formData: FormData) {
   const taskId = formData.get("taskId") as string;
 
 
-await api.delete(`/tasks/${parseInt(taskId)}`)
+  await api.delete(`/tasks/${parseInt(taskId)}`)
 
-  revalidatePath("/");
 }
 

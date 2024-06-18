@@ -1,19 +1,25 @@
+'use client'
 import OnboardingForm from "../app/components/OnbordingForm";
 import { getBoardIdForUser } from "../app/actions/getBoardId";
 import AuthRoute from "./services/auth";
+import { useEffect } from "react";
 
-const page = async () => {
-
+const getBoardId = async () => {
   const boardId = await getBoardIdForUser;
+  return boardId
+}
+
+const Page =  () => {
+  useEffect(() => {
+    getBoardId
+  })
+const boardId = getBoardId();
 
   var user: string | null = "";
-
-  try {
+  useEffect(() => {
     user = localStorage.getItem("Usuario");
-
-  } catch (error) {
-    console.log(error)
-  }
+  })
+  
 
   return (
     <AuthRoute>
@@ -25,4 +31,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;

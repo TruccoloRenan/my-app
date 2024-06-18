@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiKanban } from 'react-icons/pi';
 import Link from 'next/link'
 import { logout } from '../services/auth'
@@ -8,13 +8,11 @@ import { useRouter } from 'next/navigation';
 const Navbar = () => {
     const Navigate = useRouter();
     var currentUser: string | null = ""
-    try{
+
+    useEffect(() => {
         currentUser = localStorage.getItem("Usuario");
+    },[])
     
-    }catch(error){
-        console.log(error)
-    }
-        
     return (
         <>
         <div className='py-5 bg-transparent relative z-10 w-full text-white'>
@@ -24,7 +22,7 @@ const Navbar = () => {
                     <PiKanban />
                 </Link>
                 <div className='flex items-center gap-5 '>
-                    <h1>Bem-vindo {currentUser}</h1>
+                    <h1>Bem-vindo</h1>{currentUser && <span>currentUser</span>}
                 </div>
                 <div className='flex items-center gap-5'>
                     <button onClick={() => {

@@ -10,7 +10,7 @@ import { Task, BoardTypes } from "../types/types";
 import { SyncLoader } from "react-spinners";
 import { FaPlus } from "react-icons/fa";
 import Modal from "../components/ui/modal";
-import { createTask } from "../actions/BoardActions";
+import { CreateTask } from "../actions/BoardActions";
 import api from "../services/api";
 
 const Board: React.FC<{ board: BoardTypes | null }> = ({
@@ -118,7 +118,7 @@ const Board: React.FC<{ board: BoardTypes | null }> = ({
               closeModal={closeModal}
               title="Create New Task"
               isCreate={isCreate}
-              action={createTask}
+              action={CreateTask}
               value={board!.id}
             />
           )}

@@ -3,8 +3,8 @@ import { LuDot } from "react-icons/lu";
 import { useState } from "react";
 import Modal from "../components/ui/modal";
 import {
-  deleteTask,
-  editTask,
+  DeleteTask,
+  EditTask,
 } from "../actions/BoardActions";
 import { Task } from "../types/types";
 
@@ -114,7 +114,7 @@ const Column: React.FC<ColumnProps> = ({
           closeModal={closeEditModal}
           isEdit={isEdit}
           value={taskId!}
-          action={editTask}
+          action={EditTask}
           title="Edit Task"
         />
       )}
@@ -124,7 +124,7 @@ const Column: React.FC<ColumnProps> = ({
           closeModal={closeDeleteModal}
           title="Are you sure you want to delete this task?"
           value={taskId!}
-          action={deleteTask}
+          action={DeleteTask}
           isDelete={isDelete}
         />
       )}
